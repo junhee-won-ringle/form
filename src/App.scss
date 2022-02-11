@@ -1,0 +1,87 @@
+$boxColor: white;
+$mainColor: #FADCDA;
+$buttonColor: #B57Fb3;
+
+body {
+  background-color: $mainColor;
+  margin: 0;
+}
+
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  min-width: 100vw;
+
+  .topbar {
+    width: 100%;
+    height: 70px;
+    background-color: $boxColor;
+    font-size: 45px;
+  }
+
+  .title {
+    background-color: $boxColor;
+    width: 800px;
+    height: 150px;
+    margin-top: 70px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .titleText {
+      width: 80%;
+      border: 1px solid white;
+      margin-top: 15px;
+    }
+  }
+
+  .hr {
+    width: 800px;
+    height: 2px;
+    border: 1px solid $mainColor;
+    background-color: $buttonColor;
+    margin-top: 25px;
+  }
+
+  .questionBox {
+    height: fit-content;
+    width: 800px;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .question {
+      position: relative;
+      border-radius: 5px;
+      width: 100%;
+      min-height: 200px;
+      background-color: $boxColor;
+      margin-bottom: 10px;
+
+      .addOptionButton {
+        background-color: $buttonColor;
+        color: white;
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
+      }
+    }
+  }
+
+  .addQuestionButton {
+    position: fixed;
+    bottom: 50px;
+    right: 100px;
+    width: 50px;
+    height: 50px;
+    background-color: $buttonColor;
+    color: white;
+  }
+}
