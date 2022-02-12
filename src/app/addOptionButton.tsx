@@ -9,6 +9,7 @@ export default function AddOptionButton() {
   return(
     <Fab
       className='addOptionButton'
+      color='secondary'
     >
       <AddIcon
         onClick={() => dispatch(makeQuestion())}

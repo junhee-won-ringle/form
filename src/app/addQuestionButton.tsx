@@ -6,9 +6,10 @@ import '../App.scss'
 
 export default function AddQuestionButton() {
   const dispatch = useDispatch();
-  return(
+  return (
     <Fab
       className='addQuestionButton'
+      color='secondary'
     >
       <AddIcon
         onClick={() => dispatch(makeQuestion())}

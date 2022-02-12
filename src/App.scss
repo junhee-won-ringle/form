@@ -1,6 +1,6 @@
 $boxColor: white;
 $mainColor: #FADCDA;
-$buttonColor: #B57Fb3;
+$hrColor: #B57Fb3;
 
 body {
   background-color: $mainColor;
@@ -43,14 +43,16 @@ body {
     width: 800px;
     height: 2px;
     border: 1px solid $mainColor;
-    background-color: $buttonColor;
+    background-color: $hrColor;
     margin-top: 25px;
   }
 
   .questionBox {
+    position: relative;
     height: fit-content;
     width: 800px;
     margin-top: 25px;
+    margin-bottom: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -62,9 +64,15 @@ body {
       min-height: 200px;
       background-color: $boxColor;
       margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+
+      .qTitle{
+        width: 60%;
+        margin-left: 10%;
+      }
 
       .addOptionButton {
-        background-color: $buttonColor;
         color: white;
         position: absolute;
         bottom: 15px;
@@ -73,15 +81,22 @@ body {
         height: 45px;
       }
     }
+
+    .addQuestionButton {
+      position: absolute;
+      bottom: 50px;
+      right: -100px;
+      width: 50px;
+      height: 50px;
+      color: white;
+    }
   }
 
-  .addQuestionButton {
-    position: fixed;
-    bottom: 50px;
-    right: 100px;
-    width: 50px;
+  .submitButton {
+    width: 200px;
     height: 50px;
-    background-color: $buttonColor;
-    color: white;
+    font-size: 40px;
+    margin-bottom: 50px;
   }
+
 }

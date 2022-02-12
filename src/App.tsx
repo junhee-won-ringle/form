@@ -2,7 +2,7 @@ import './App.scss';
 import Topbar from './app/topbar';
 import Title from './app/title';
 import Questions from './app/questions';
-import AddQuestionButton from './app/addQuestionButton';
+import SubmitButton from './app/submitButton';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <Title />
       <hr className="hr"></hr>
       <Questions />
-      <AddQuestionButton />
+      <SubmitButton />
     </div>
   );
 }
