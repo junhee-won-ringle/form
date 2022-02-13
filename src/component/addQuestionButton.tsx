@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { makeQuestion } from "./formSlice";
+import { makeQuestion } from "../app/formSlice";
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import '../App.scss'
@@ -10,10 +10,9 @@ export default function AddQuestionButton() {
     <Fab
       className='addQuestionButton'
       color='secondary'
+      onClick={() => dispatch(makeQuestion())}
     >
-      <AddIcon
-        onClick={() => dispatch(makeQuestion())}
-      />
+      <AddIcon />
     </Fab>
   )
 }

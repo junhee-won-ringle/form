@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { updateTitle, updateDesc } from "./formSlice";
+import { updateTitle, updateDesc } from "../app/formSlice";
 import '../App.scss'
 import TextField from '@mui/material/TextField';
 

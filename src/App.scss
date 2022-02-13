@@ -60,16 +60,18 @@ body {
     .question {
       position: relative;
       border-radius: 5px;
-      width: 100%;
+      width: 90%;
       min-height: 200px;
       background-color: $boxColor;
       margin-bottom: 10px;
       display: flex;
       flex-direction: column;
+      padding-left: 10%;
+      padding-bottom: 30px;
 
       .qTitle{
-        width: 60%;
-        margin-left: 10%;
+        width: 50%;
+        margin-top: 10px;
       }
 
       .addOptionButton {
@@ -79,6 +81,42 @@ body {
         right: 15px;
         width: 45px;
         height: 45px;
+      }
+
+      .selectType {
+        position: absolute;
+        width: 120px;
+        height: 40px;
+        top: 10px;
+        right: 70px;
+      }
+
+      .deleteQuestion {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        top: 10px;
+        right: 20px;
+        font-size: 40px;
+      }
+
+      .optionText {
+        margin-left: 5%;
+        width: 65%;
+        margin-top: 20px;
+      }
+
+      .optionCheck {
+        width: 70%;
+        margin-top: 20px;
+        display: flex;
+        margin-left: 5%;
+
+        .deleteOption {
+          width: 30px;
+          height: 30px;
+          margin-top: 10px;
+        }
       }
     }
 

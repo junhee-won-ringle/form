@@ -1,8 +1,8 @@
 import './App.scss';
-import Topbar from './app/topbar';
-import Title from './app/title';
-import Questions from './app/questions';
-import SubmitButton from './app/submitButton';
+import Topbar from './component/topbar';
+import Title from './component/title';
+import Questions from './component/questions';
+import SubmitButton from './component/submitButton';
 
 function App() {
   return (

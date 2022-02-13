@@ -13,11 +13,13 @@ export interface Question {
   desc: string;
   type: string;
   options: Array<Option>;
+  text: string;
 }
 
 export interface Option {
   uuid: string;
   desc: string;
+  checked: boolean;
 }
 
 const initialState: Form = {
@@ -44,34 +46,91 @@ export const formSlice = createSlice({
         type: "radio",
         options: [{
           uuid: uuidv4(),
-          desc: "default description"
+          desc: "",
+          checked: false
         }, {
           uuid: uuidv4(),
-          desc: "default description"
-        }]
+          desc: "",
+          checked: false
+        }],
+        text: "default text"
       })
     },
-    updateQTitle: (state, action) => {
-      state.questions[action.payload.index].title = action.payload.title
-    },
-    updateQDesc: (state, action) => {
-      state.questions[action.payload.index].desc = action.payload.desc
-    },
-    updateQType: (state, action) => {
-      state.questions[action.payload.index].type = action.payload.type
+    updateQuestion: (state, action) => {
+      const index = state.questions.findIndex(obj => obj.uuid === action.payload.uuid);
+      if (index !== -1) {
+        if (action.payload.key === 'title') {
+          state.questions[index].title = action.payload.data;
+        } else if (action.payload.key === 'desc') {
+          state.questions[index].desc = action.payload.data;
+        } else if (action.payload.key === 'type') {
+          state.questions[index].type = action.payload.data;
+          for (let iter = 0; iter < state.questions[index].options.length; iter++) {
+            state.questions[index].options[iter].checked = false;
+          }
+        } else if (action.payload.key === 'delete') {
+          state.questions.splice(index, 1);
+        } else {
+          state.questions[index].text = action.payload.data;
+        }
+      }
     },
     makeOption: (state, action) => {
-      state.questions[action.payload.index].options.push({
+      const index = state.questions.findIndex(obj => obj.uuid === action.payload.qUuid);
+      if (index === -1) {
+        return;
+      }
+      state.questions[index].options.push({
         uuid: uuidv4(),
-        desc: "default description"
+        desc: "",
+        checked: false
       })
+    },
+    updateOption: (state, action) => {
+      const index = state.questions.findIndex(obj => obj.uuid === action.payload.qUuid);
+      if (index === -1) {
+        return;
+      }
+      const optionIndex = state.questions[index].options.findIndex(
+        obj => obj.uuid === action.payload.optionUuid);
+      if (index === -1) {
+        return;
+      }
+
+      if (action.payload.key === 'desc') {
+        state.questions[index].options[optionIndex].desc = action.payload.data;
+      } else {
+        state.questions[index].options.splice(optionIndex, 1);
+      }
+    },
+    checkOption: (state, action) => {
+      const index = state.questions.findIndex(obj => obj.uuid === action.payload.qUuid);
+      if (index === -1) {
+        return;
+      }
+      if (action.payload.type === 'radio') {
+        for (let iter = 0; iter < state.questions[index].options.length; iter++) {
+          if (state.questions[index].options[iter].uuid === action.payload.optionUuid) {
+            state.questions[index].options[iter].checked = true;
+          } else {
+            state.questions[index].options[iter].checked = false;
+          }
+        }
+      } else {
+        const optionIndex = state.questions[index].options.findIndex(
+          obj => obj.uuid === action.payload.optionUuid);
+        if (optionIndex === -1) {
+          return;
+        }
+        state.questions[index].options[optionIndex].checked = true;
+      }
     }
   },
 });
 
 export const {
-  updateTitle, updateDesc, updateQTitle, updateQDesc, updateQType, makeQuestion,
-  makeOption
+  updateTitle, updateDesc, makeQuestion, updateQuestion,
+  makeOption,updateOption , checkOption
 } = formSlice.actions;
 
 export default formSlice.reducer;
