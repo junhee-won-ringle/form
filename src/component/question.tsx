@@ -1,5 +1,6 @@
+import React from 'react';
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { RootState } from '../app/store';
 import { updateQuestion, makeOption } from "../app/formSlice";
 import Option from './option';
@@ -16,12 +17,15 @@ interface props {
   uuid: string
 }
 
-export default function Question(props: props) {
+function Question(props: props) {
   const dispatch = useDispatch();
+  const optionUuids = useSelector(((state: RootState) => {
+    var question: any = state.form.questions.find(
+      question => question.uuid === props.uuid
+    )
+    return question.options.map((option: any) => option.uuid)
+  }), shallowEqual);
   const [qType, setQType] = useState<string>('radio');
-  const options= useSelector((state: RootState) => state.form.questions).find(
-    (question) => question.uuid === props.uuid
-  )?.options;
   
   const handleQType = (type: string) => {
     setQType(type);
@@ -81,12 +85,12 @@ export default function Question(props: props) {
       >
         <AddIcon />
       </Fab>
-      {qType !== 'text' && options?.map((option) => {
+      {qType !== 'text' && optionUuids.map((optionUuid: any) => {
         return(
           <Option
-            key={option.uuid}
+            key={optionUuid}
             qUuid={props.uuid}
-            optionUuid={option.uuid}
+            optionUuid={optionUuid}
             type={qType}
           />
         )
@@ -97,3 +101,5 @@ export default function Question(props: props) {
     </div>
   )
 }
+
+export default React.memo(Question)

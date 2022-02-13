@@ -122,7 +122,7 @@ export const formSlice = createSlice({
         if (optionIndex === -1) {
           return;
         }
-        state.questions[index].options[optionIndex].checked = true;
+        state.questions[index].options[optionIndex].checked = !state.questions[index].options[optionIndex].checked;
       }
     }
   },

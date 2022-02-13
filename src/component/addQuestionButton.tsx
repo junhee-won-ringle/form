@@ -1,10 +1,11 @@
+import React from "react";
 import { useDispatch } from "react-redux";
 import { makeQuestion } from "../app/formSlice";
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import '../App.scss'
 
-export default function AddQuestionButton() {
+const AddQuestionButton = () => {
   const dispatch = useDispatch();
   return (
     <Fab
@@ -16,3 +17,5 @@ export default function AddQuestionButton() {
     </Fab>
   )
 }
+
+export default React.memo(AddQuestionButton);

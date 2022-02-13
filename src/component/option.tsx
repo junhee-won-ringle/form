@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { RootState } from '../app/store';
 import { updateOption, checkOption } from '../app/formSlice';
 import '../App.scss';
@@ -14,14 +14,15 @@ interface props {
   type: string;
 }
 
-export default function Option(props: props) {
+function Option(props: props) {
   const dispatch = useDispatch();
-  const option = useSelector((state: RootState) => state.form.questions).find(
-    (question) => question.uuid === props.qUuid
-  )?.options.find(
-    (option) => option.uuid === props.optionUuid
-  );
-  const [radioValue, setRadioValue] = useState<string>("");
+  const option = useSelector(((state: RootState) => {
+    var question: any = state.form.questions.find(
+      question => question.uuid === props.qUuid)
+    return question.options.find(
+      (option: any) => option.uuid === props.optionUuid
+    )
+  }), shallowEqual);
 
   if (props.type === 'radio') {
     return (
@@ -93,3 +94,5 @@ export default function Option(props: props) {
     )
   }
 }
+
+export default React.memo(Option)
