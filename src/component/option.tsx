@@ -14,6 +14,12 @@ interface props {
   type: string;
 }
 
+/**
+ * 다른 option 수정 시 발생하는 리렌더링을 방지하기 위해, shallowEqual 사용
+ * option 삭제 시 <Question />가 렌더링 된다.
+ * 이 때, <Questoin /> 안에 있는 다른 option들의 리렌더링을 방지하기 위해
+ * react.memo 사용
+ */
 function Option(props: props) {
   const dispatch = useDispatch();
   const option = useSelector(((state: RootState) => {

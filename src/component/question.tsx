@@ -17,6 +17,12 @@ interface props {
   uuid: string
 }
 
+/**
+ * 다른 question 수정 시 발생하는 리렌더링을 방지하기 위해, shallowEqual 사용
+ * question 삭제 시 <Questions />가 렌더링 된다.
+ * 이 때, <Questoins /> 안에 있는 다른 question들의 리렌더링을 방지하기 위해
+ * react.memo 사용
+ */
 function Question(props: props) {
   const dispatch = useDispatch();
   const optionUuids = useSelector(((state: RootState) => {

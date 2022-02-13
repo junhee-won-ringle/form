@@ -16,7 +16,7 @@ export default function SubmitButton() {
       variant="contained"
       onClick={() => handleClick()}
     >
-      Submit
+      SUBMIT
     </Button>
   )
 }

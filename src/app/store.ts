@@ -7,6 +7,7 @@ export const store = configureStore({
   },
 });
 
+// useSelector에서 state의 type설정을 위해
 export const rootReducer = combineReducers({
   form: formReducer
 });
